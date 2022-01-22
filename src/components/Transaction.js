@@ -1,6 +1,19 @@
-function Transaction(){
+import { Link } from "react-router-dom";
+
+function Transaction({ transaction, id }){
+    let amountColor = transaction.amount<0 ? 'danger' : 'success';
     return (
-        <h2>Transaction</h2>
+        <tr>
+            <td>
+                {transaction.date}
+            </td>
+            <td>
+                <Link to={`/transactions/${id}`}>{transaction.name}</Link>
+            </td>
+            <td className={`text-${amountColor}`}>
+                {transaction.amount}
+            </td>
+      </tr>
     )
 }
 

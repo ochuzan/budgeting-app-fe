@@ -1,6 +1,46 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Card, Button } from "react-bootstrap";
+
 function TransactionDetails(){
+    const [ transaction, setTransaction ] = useState([]);
+    let { id } = useParams();
+
+    const API_URL = process.env.REACT_APP_API_URL;
+
+    useEffect(() => {
+        axios.get(`${API_URL}/transactions/${id}`)
+        .then((res) => {
+            setTransaction(res.data);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, []);
+
+
+    let amountColor = transaction.amount<0 ? 'danger' : 'success';
     return (
-        <h2>Transaction Details</h2>
+        <div>
+            {/* <h2></h2> */}
+            <Card bg="light" text="dark" border="dark "className="text-center" >
+                <Card.Header>Transaction Details</Card.Header>
+                <Card.Body>
+                    <Card.Title>{transaction.name}</Card.Title>
+                    <Card.Text>
+                        {transaction.from}
+                    </Card.Text>
+                    <Card.Text className={`text-${amountColor}`}>
+                        {transaction.amount}
+                    </Card.Text>
+                    <Button as={Link} to="/transactions" variant="secondary">Back</Button>{' '}
+                    <Button as={Link} to={`/transactions/${id}/edit`} variant="warning">Edit</Button>{' '}
+                    <Button onClick={null} variant="danger">Delete</Button>
+                </Card.Body>
+                <Card.Footer className="text">{transaction.date}</Card.Footer>
+            </Card>
+        </div>
     )
 }
 
