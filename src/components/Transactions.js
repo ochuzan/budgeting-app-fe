@@ -4,23 +4,21 @@ import { Badge, Table } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 
-function Transactions(){
+function Transactions({ getTotalBalance, total} ){
     const [ transactions, setTransactions ] = useState([]);
-    const [ total, setTotal ] = useState([]);
+    // const [ total, setTotal ] = useState([]);
     const API_URL = process.env.REACT_APP_API_URL;
 
+    console.log(total)
     useEffect(() => {
         axios.get(`${API_URL}/transactions`)
         .then((res) => {
             setTransactions(res.data);
-            let totalBalance = res.data.reduce((sum, { amount }) => {
-                return sum + Number(amount)
-            }, 0)
-            setTotal(totalBalance);
+            getTotalBalance(res);
         }).catch((err) => {
             throw err;
         });
-    }, []);
+}, [getTotalBalance]);
 
     let backgroundColor;
     if(total>1000){
@@ -32,7 +30,7 @@ function Transactions(){
     }
     return (
         <div>
-            <h2>Total Balance: <Badge bg={backgroundColor}>${total}</Badge></h2>
+            <h2><Badge bg={backgroundColor}>All Transactions</Badge></h2>
             <Table striped bordered hover>
                 <thead>
                 <tr>

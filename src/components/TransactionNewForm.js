@@ -40,7 +40,7 @@ function TransactionNewForm(){
                         name="transactionDate"
                         value={transaction.date}
                         onChange={handleTextChange}
-                        type="text"
+                        type="date"
                         placeholder="Date..." 
                     />
                 </Form.Group>

@@ -2,8 +2,25 @@
   text-align: center;
 }
 
+body {
+  /* font-family: 'Prompt', sans-serif !important; */
+  /* font-family: 'Signika Negative', sans-serif !important; */
+  /* font-family: 'Secular One', sans-serif !important; */
+  font-family: 'Patua One', cursive !important;
+}
+
 h1 {
   margin-left: 80px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.form-control {
+  width: 50% !important;
+  justify-content: center !important;
+  margin: 0 auto !important;
 }
 
 /* .navbar > .container .navbar-brand,

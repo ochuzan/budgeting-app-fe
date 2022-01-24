@@ -1,29 +1,18 @@
 import "../App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container, Offcanvas } from "react-bootstrap";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { Navbar, Nav, Container, Offcanvas, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function NavigationBar(){
-    const [ total, setTotal ] = useState([]);
-    const API_URL = process.env.REACT_APP_API_URL;
+function NavigationBar({total}){
 
-    // let totalBalance;
-
-    useEffect(() => {
-        axios.get(`${API_URL}/transactions`)
-        .then((res) => {
-            // let totalBalance = res.data.reduce((sum, { amount }) => sum + amount, 0)
-            let totalBalance = res.data.reduce((sum, { amount }) => {
-                return sum + Number(amount);
-            }, 0)
-            // console.log(totalBalance)
-            setTotal(totalBalance);
-        }).catch((err) => {
-            throw err;
-        });
-    }, []);
+    let backgroundColor;
+    if(total>1000){
+        backgroundColor = "success";
+    } else if(total<0){
+        backgroundColor = "danger";
+    } else {
+        backgroundColor = "secondary";
+    }
 
     return (
         <div>
@@ -48,8 +37,8 @@ function NavigationBar(){
                     </Navbar.Offcanvas>
                     <Navbar.Brand as={Link} to="/transactions" className="m-auto"><h1>INAB</h1></Navbar.Brand>
                     <Nav className="justify-content-end">
-                        <Navbar.Text>
-                            Total Balance: {total}
+                        <Navbar.Text className="nav-bar-text">
+                            Total Balance: <Badge bg={backgroundColor}>${total}</Badge>
                         </Navbar.Text>
                     </Nav>
                 </Container>

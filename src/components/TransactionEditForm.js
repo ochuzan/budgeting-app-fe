@@ -40,6 +40,15 @@ function TransactionEditForm(){
         })
     };
 
+    const handleDelete = () => {
+        axios.delete(`${API_URL}/transactions/${id}`)
+        .then((res) => {
+            navigate("/transactions");
+        }).catch((err) => {
+            console.log(err);
+        })
+    };
+
     return (
         <div>
             <h2>Edit Transaction</h2>
@@ -51,8 +60,9 @@ function TransactionEditForm(){
                         name="transactionDate"
                         value={transaction.date}
                         onChange={handleTextChange}
-                        type="text"
-                        placeholder="Date..." 
+                        type="date"
+                        placeholder="Date..."
+                        required
                     />
                 </Form.Group>
                 <Form.Group className="mb-3" >
@@ -91,7 +101,8 @@ function TransactionEditForm(){
                 <Button variant="primary" type="submit">
                     Submit
                 </Button> {""}
-                <Button as={Link} to={`/transactions/${id}`} variant="secondary">Back</Button>
+                <Button as={Link} to={`/transactions/${id}`} variant="secondary">Back</Button>{' '}
+                <Button onClick={handleDelete} variant="danger">Delete</Button>
             </Form>
         </div>
         
