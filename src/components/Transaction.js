@@ -13,6 +13,9 @@ function Transaction({ transaction, id }){
             <td className={`text-${amountColor}`}>
                 {transaction.amount}
             </td>
+            <td>
+                <Link to={`/transactions/${id}/edit`}>📝</Link>
+            </td>
       </tr>
     )
 }

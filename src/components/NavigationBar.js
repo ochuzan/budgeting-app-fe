@@ -16,7 +16,7 @@ function NavigationBar(){
         .then((res) => {
             // let totalBalance = res.data.reduce((sum, { amount }) => sum + amount, 0)
             let totalBalance = res.data.reduce((sum, { amount }) => {
-                return sum + amount
+                return sum + Number(amount);
             }, 0)
             // console.log(totalBalance)
             setTotal(totalBalance);
@@ -41,7 +41,8 @@ function NavigationBar(){
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
                             <Nav.Link as={Link} to="/">Home</Nav.Link>
-                            <Nav.Link as={Link} to="/transactions/new">Add Transaction</Nav.Link>
+                            <Nav.Link as={Link} to="/transactions">View All Transactions</Nav.Link>
+                            <Nav.Link as={Link} to="/transactions/new">Add New Transaction</Nav.Link>
                             </Nav>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
