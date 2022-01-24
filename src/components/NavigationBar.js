@@ -14,7 +14,10 @@ function NavigationBar(){
     useEffect(() => {
         axios.get(`${API_URL}/transactions`)
         .then((res) => {
-            let totalBalance = res.data.reduce((sum, { amount }) => sum + amount, 0)
+            // let totalBalance = res.data.reduce((sum, { amount }) => sum + amount, 0)
+            let totalBalance = res.data.reduce((sum, { amount }) => {
+                return sum + amount
+            }, 0)
             // console.log(totalBalance)
             setTotal(totalBalance);
         }).catch((err) => {
@@ -45,7 +48,7 @@ function NavigationBar(){
                     <Navbar.Brand as={Link} to="/transactions" className="m-auto"><h1>INAB</h1></Navbar.Brand>
                     <Nav className="justify-content-end">
                         <Navbar.Text>
-                            Total Balance: {total} 
+                            Total Balance: {total}
                         </Navbar.Text>
                     </Nav>
                 </Container>
