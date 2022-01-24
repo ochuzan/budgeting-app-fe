@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button } from "react-bootstrap";
 
 function TransactionDetails(){
     const [ transaction, setTransaction ] = useState([]);
+
     let { id } = useParams();
+    let navigate = useNavigate();
 
     const API_URL = process.env.REACT_APP_API_URL;
 
@@ -19,8 +21,18 @@ function TransactionDetails(){
         })
     }, []);
 
+    const handleDelete = () => {
+        axios.delete(`${API_URL}/transactions/${id}`)
+        .then((res) => {
+            navigate("/transactions");
+        }).catch((err) => {
+            console.log(err);
+        })
+    };
+
 
     let amountColor = transaction.amount<0 ? 'danger' : 'success';
+
     return (
         <div>
             {/* <h2></h2> */}
@@ -36,7 +48,7 @@ function TransactionDetails(){
                     </Card.Text>
                     <Button as={Link} to="/transactions" variant="secondary">Back</Button>{' '}
                     <Button as={Link} to={`/transactions/${id}/edit`} variant="warning">Edit</Button>{' '}
-                    <Button onClick={null} variant="danger">Delete</Button>
+                    <Button onClick={handleDelete} variant="danger">Delete</Button>
                 </Card.Body>
                 <Card.Footer className="text">{transaction.date}</Card.Footer>
             </Card>

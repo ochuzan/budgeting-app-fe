@@ -19,6 +19,7 @@ function Transactions(){
 
     return (
         <div>
+            <h2>Total Balance: </h2>
             <Table striped bordered hover>
                 <thead>
                 <tr>
