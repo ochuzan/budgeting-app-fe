@@ -38,7 +38,7 @@ function NavigationBar({total}){
                     <Navbar.Brand as={Link} to="/transactions" className="m-auto"><h1>INAB</h1></Navbar.Brand>
                     <Nav className="justify-content-end">
                         <Navbar.Text className="nav-bar-text">
-                            Total Balance: <Badge bg={backgroundColor}>${total}</Badge>
+                            Total Balance: <Badge className="balance-badge"bg={backgroundColor}>${total}</Badge>
                         </Navbar.Text>
                     </Nav>
                 </Container>

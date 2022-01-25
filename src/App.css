@@ -10,7 +10,7 @@ body {
 }
 
 h1 {
-  margin-left: 80px;
+  margin-left: 95px;
 }
 
 a:link {
@@ -21,6 +21,15 @@ a:link {
   width: 50% !important;
   justify-content: center !important;
   margin: 0 auto !important;
+}
+
+.nav-bar-text {
+  color: white !important;
+  font-size: large !important;
+}
+
+.balance-badge {
+  font-size: large !important;
 }
 
 /* .navbar > .container .navbar-brand,
