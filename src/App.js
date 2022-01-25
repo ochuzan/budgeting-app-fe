@@ -9,6 +9,7 @@ import TransactionDetails from './components/TransactionDetail';
 import TransactionEditForm from './components/TransactionEditForm';
 import TransactionNewForm from './components/TransactionNewForm';
 import Transactions from './components/Transactions';
+import TransactionsSearch from './components/TransactionsSearch';
 
 function App() {
   const [ total, setTotal ] = useState([]);
@@ -37,6 +38,7 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/transactions" element={<Transactions getTotalBalance={getTotalBalance} total={total}/>}/>
         <Route path="/transactions/new" element={<TransactionNewForm />}/>
+        <Route path="/transactions/search" element={<TransactionsSearch />}/>
         <Route path="/transactions/:id" element={<TransactionDetails />}/>
         <Route path="/transactions/:id/edit" element={<TransactionEditForm />}/>
         <Route path="*" element={<NotFound />}/>

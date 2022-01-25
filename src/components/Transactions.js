@@ -3,13 +3,11 @@ import Transaction from "./Transaction";
 import { Badge, Table } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
-
 function Transactions({ getTotalBalance, total} ){
     const [ transactions, setTransactions ] = useState([]);
     // const [ total, setTotal ] = useState([]);
     const API_URL = process.env.REACT_APP_API_URL;
 
-    console.log(total)
     useEffect(() => {
         axios.get(`${API_URL}/transactions`)
         .then((res) => {
@@ -20,6 +18,7 @@ function Transactions({ getTotalBalance, total} ){
         });
 }, [getTotalBalance]);
 
+
     let backgroundColor;
     if(total>1000){
         backgroundColor = "success";
@@ -28,9 +27,10 @@ function Transactions({ getTotalBalance, total} ){
     } else {
         backgroundColor = "secondary";
     }
+
     return (
         <div>
-            <h2><Badge bg={backgroundColor}>All Transactions</Badge></h2>
+            <h2 id="all-transaction-header"><Badge bg={backgroundColor}>All Transactions</Badge></h2>
             <Table striped bordered hover>
                 <thead>
                 <tr>
