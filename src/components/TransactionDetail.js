@@ -30,6 +30,7 @@ function TransactionDetails(){
         })
     };
 
+    console.log(transaction)
 
     let amountColor = transaction.amount<0 ? 'danger' : 'success';
 

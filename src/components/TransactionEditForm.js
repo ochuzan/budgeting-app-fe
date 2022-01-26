@@ -8,8 +8,10 @@ function TransactionEditForm(){
         date: "",
         name: "",
         amount: 0,
-        from: ""
+        from: "",
+        category: ""
     });
+    const [ transactions, setTransactions ] = useState([]);
 
     let { id } = useParams();
     const API_URL = process.env.REACT_APP_API_URL;
@@ -25,7 +27,14 @@ function TransactionEditForm(){
             setTransaction(res.data);
         }).catch((err) => {
             console.log(err);
-        })
+        });
+
+        axios.get(`${API_URL}/transactions`)
+        .then((res) => {
+            setTransactions(res.data);
+        }).catch((err) => {
+            throw err;
+        });
     }, []);
 
     const handleSubmit = (e) => {
@@ -49,6 +58,9 @@ function TransactionEditForm(){
         })
     };
 
+    let categories = transactions.map((transaction, index) => {
+        return <option key={index} value={transaction.category} >{transaction.category}</option>
+    })
     return (
         <div>
             <h2>Edit Transaction</h2>
@@ -57,7 +69,7 @@ function TransactionEditForm(){
                     <Form.Label>Transaction Date</Form.Label>
                     <Form.Control 
                         id="date"
-                        name="transactionDate"
+                        name="date"
                         value={transaction.date}
                         onChange={handleTextChange}
                         type="date"
@@ -89,22 +101,13 @@ function TransactionEditForm(){
                 </Form.Group>
                 <Form.Group className="mb-3" >
                     <Form.Label>Category</Form.Label>
-                    {/* <Form.Select
-                        id="from"
-                        name="from"
-                        value={transaction.from}
-                        onChange={handleTextChange}
-                        placeholder="From..."
-                    > */}
-                    <Form.Select>
+                    <Form.Select id="category" name="category" onChange={handleTextChange}>
+                        <option value={transaction.category}>{transaction.category}</option>
+                        {/* {categories} */}
                         <option>Food</option>
                         <option>Income</option>
                         <option>Subscriptions</option>
                         <option>Transportation</option>
-                        <option></option>
-                        <option></option>
-                        <option></option>
-                        <option></option>
                     </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3" >

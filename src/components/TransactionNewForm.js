@@ -67,6 +67,18 @@ function TransactionNewForm(){
                     />
                 </Form.Group>
                 <Form.Group className="mb-3" >
+                    <Form.Label>Category</Form.Label>
+                    <Form.Select id="category" name="category" onChange={handleTextChange}>
+                        {/* <option value={transaction.category}>{transaction.category}</option> */}
+                        {/* {categories} */}
+                        <option>Food</option>
+                        <option>Income</option>
+                        <option>Subscriptions</option>
+                        <option>Transportation</option>
+                        <option>Other</option>
+                    </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3" >
                     <Form.Label>Amount</Form.Label>
                     <Form.Control
                         id="amount"

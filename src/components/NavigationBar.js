@@ -16,7 +16,7 @@ function NavigationBar({total}){
 
     return (
         <div>
-            <Navbar bg="primary" variant="dark" expand={false}>
+            <Navbar bg="primary" variant="dark" expand={false} collapseOnSelect>
                 <Container fluid>
                     <Navbar.Toggle bg="light" aria-controls="offcanvasNavbar" />
                     <Navbar.Offcanvas
