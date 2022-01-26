@@ -35,7 +35,7 @@ function Transactions({ getTotalBalance, total} ){
                 <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Payee</th>
+                    <th>Name</th>
                     {/* <th>Category</th> */}
                     <th>Amount</th>
                     {/* <th>Memo</th> */}

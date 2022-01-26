@@ -43,6 +43,9 @@ function TransactionDetails(){
                     <Card.Text>
                         {transaction.from}
                     </Card.Text>
+                    <Card.Text>
+                        {transaction.category}
+                    </Card.Text>
                     <Card.Text className={`text-${amountColor}`}>
                         {transaction.amount}
                     </Card.Text>

@@ -88,6 +88,26 @@ function TransactionEditForm(){
                     />
                 </Form.Group>
                 <Form.Group className="mb-3" >
+                    <Form.Label>Category</Form.Label>
+                    {/* <Form.Select
+                        id="from"
+                        name="from"
+                        value={transaction.from}
+                        onChange={handleTextChange}
+                        placeholder="From..."
+                    > */}
+                    <Form.Select>
+                        <option>Food</option>
+                        <option>Income</option>
+                        <option>Subscriptions</option>
+                        <option>Transportation</option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3" >
                     <Form.Label>Amount</Form.Label>
                     <Form.Control
                         id="amount"
